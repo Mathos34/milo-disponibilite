@@ -1,31 +1,47 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Disponibilité de Milo (milo-ece.com), relevée par Upptime depuis GitHub Actions.
+# Chaque relevé est un commit de `history/` : l'historique du dépôt EST le registre de disponibilité.
+owner: Mathos34
+repo: milo-disponibilite
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  # La santé de bout en bout : la route `/health` du site interroge l'API en interne
+  # (200 sain, 503 dégradé). C'est ce que voit un élève.
+  - name: Milo (milo-ece.com)
+    url: https://milo-ece.com/health
+    expectedStatusCodes:
+      - 200
+  # L'API seule : distingue une panne du site d'une panne de l'API.
+  - name: API Milo
+    url: https://api.milo-ece.com/health
+    expectedStatusCodes:
+      - 200
+
+# Une panne ouvre une issue assignée : GitHub prévient par courriel et sur l'application mobile.
+assignees:
+  - Mathos34
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  baseUrl: /milo-disponibilite
+  name: Milo, disponibilité
+  introTitle: "Disponibilité de **Milo**"
+  introMessage: "Relevé automatique toutes les 5 minutes de [milo-ece.com/health](https://milo-ece.com/health), qui vérifie le site et l'API. L'historique complet est dans le [dépôt](https://github.com/Mathos34/milo-disponibilite)."
   navbar:
-    - title: Status
+    - title: État
       href: /
-    - title: GitHub
+    - title: Historique (GitHub)
       href: https://github.com/$OWNER/$REPO
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+i18n:
+  activeIncidents: Incidents en cours
+  allSystemsOperational: Tous les services fonctionnent
+  pastIncidents: Incidents passés
+  liveStatus: État en direct
+  overallUptime: "Disponibilité globale : $UPTIME"
+  overallUptimeTitle: Disponibilité globale
+  averageResponseTime: "Temps de réponse moyen : $TIME ms"
+  averageResponseTimeTitle: Temps de réponse moyen
+  sevelDayResponseTime: Temps de réponse sur 7 jours
+  responseTimeMs: Temps de réponse (ms)
+  up: En ligne
+  down: Hors ligne
+  degraded: Dégradé
