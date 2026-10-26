@@ -11,7 +11,7 @@ sites:
     expectedStatusCodes:
       - 200
   # L'API seule, en profondeur (26/10/2026) : la base, Qdrant (la recherche dans les cours) et le stockage des
-  # documents. 503 si la base ou Qdrant tombe ; « degraded » (200) si seul le stockage tombe.  ne disait
+  # documents. 503 si la base ou Qdrant tombe ; « degraded » (200) si seul le stockage tombe. « /health » ne disait
   # que « le processus vit ».
   - name: API Milo
     url: https://api.milo-ece.com/health/profond
